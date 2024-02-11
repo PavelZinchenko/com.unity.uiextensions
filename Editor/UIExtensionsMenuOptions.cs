@@ -2,7 +2,9 @@
 #define NEW_INPUT_SYSTEM
 #endif
 
+#if TEXTMESHPRO_4_0_OR_NEWER
 using TMPro;
+#endif
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,8 +22,8 @@ namespace UnityEditor.UI
 
 	static internal class ExtensionMenuOptions
 	{
-		#region Unity Builder section  - Do not change unless UI Source (Editor\MenuOptions) changes
-		#region Unity Builder properties  - Do not change unless UI Source (Editor\MenuOptions) changes
+#region Unity Builder section  - Do not change unless UI Source (Editor\MenuOptions) changes
+#region Unity Builder properties  - Do not change unless UI Source (Editor\MenuOptions) changes
 		private const string kUILayerName = "UI";
 		private const float kWidth = 160f;
 		private const float kThickHeight = 30f;
@@ -37,8 +39,8 @@ namespace UnityEditor.UI
 		private static Vector2 s_ImageGUIElementSize = new Vector2(100f, 100f);
 		private static Color s_DefaultSelectableColor = new Color(1f, 1f, 1f, 1f);
 		private static Color s_TextColor = new Color(50f / 255f, 50f / 255f, 50f / 255f, 1f);
-		#endregion
-		#region Unity Builder methods - Do not change unless UI Source (Editor\MenuOptions) changes
+#endregion
+#region Unity Builder methods - Do not change unless UI Source (Editor\MenuOptions) changes
 		private static void SetPositionVisibleinSceneView(RectTransform canvasRTransform, RectTransform itemTransform)
 		{
 			// Find the best scene view
@@ -163,7 +165,7 @@ namespace UnityEditor.UI
 			var esys = Object.FindFirstObjectByType<EventSystem>();
 #else
 			var esys = Object.FindObjectOfType<EventSystem>();
-#endif     			
+#endif
 			if (esys == null)
 			{
 				var eventSystem = new GameObject("EventSystem");
@@ -222,12 +224,12 @@ namespace UnityEditor.UI
 			// since there's no point in that, and it's good to keep them as consistent as possible.
 			lbl.color = s_TextColor;
 		}
-		#endregion
-		#endregion
+#endregion
+#endregion
 
-		#region UI Extensions "Create" Menu items
+#region UI Extensions "Create" Menu items
 
-		#region Scroll Snap controls
+#region Scroll Snap controls
 		[MenuItem("GameObject/UI/Extensions/Layout/Horizontal Scroll Snap", false)]
 		static public void AddHorizontalScrollSnap(MenuCommand menuCommand)
 		{
@@ -365,7 +367,7 @@ namespace UnityEditor.UI
 			Selection.activeGameObject = verticalScrollSnapRoot;
 		}
 
-		#region New ScrollSnapCode
+#region New ScrollSnapCode
 		static public void FixedScrollSnapBase(MenuCommand menuCommand, string name, ScrollSnap.ScrollDirection direction, int itemVisible, int itemCount, Vector2 itemSize)
 		{
 			GameObject scrollSnapRoot = CreateUIElementRoot(name, menuCommand, s_ThickGUIElementSize);
@@ -487,9 +489,9 @@ namespace UnityEditor.UI
 		{
 			FixedScrollSnapBase(menuCommand, "Scroll Snap Vertical Multiple", ScrollSnap.ScrollDirection.Vertical, 3, 15, new Vector2(100, 100));
 		}
-		#endregion
+#endregion
 
-		#region ContentScrollSnapHorizontal
+#region ContentScrollSnapHorizontal
 		[MenuItem("GameObject/UI/Extensions/Layout/Content Scroll Snap Horizontal", false)]
 		static public void AddContentScrollSnapHorizontal(MenuCommand menuCommand)
 		{
@@ -594,11 +596,11 @@ namespace UnityEditor.UI
 			//add scroll snap after we've added the content & items
 			contentScrollSnapRoot.AddComponent<ContentScrollSnapHorizontal>();
 		}
-		#endregion
+#endregion
 
-		#endregion
+#endregion
 
-		#region UIVertical Scroller
+#region UIVertical Scroller
 		[MenuItem("GameObject/UI/Extensions/Layout/UI Vertical Scroller", false)]
 		static public void AddUIVerticallScroller(MenuCommand menuCommand)
 		{
@@ -677,9 +679,9 @@ namespace UnityEditor.UI
 
 			Selection.activeGameObject = uiVerticalScrollerRoot;
 		}
-        #endregion
+#endregion
 
-        #region UIHorizontal Scroller
+#region UIHorizontal Scroller
         [MenuItem("GameObject/UI/Extensions/Layout/UI Horizontal Scroller", false)]
         static public void AddUIHorizontalScroller(MenuCommand menuCommand)
         {
@@ -758,9 +760,9 @@ namespace UnityEditor.UI
 
             Selection.activeGameObject = uiHorizontalScrollerRoot;
         }
-        #endregion
+#endregion
 
-        #region UI Button
+#region UI Button
         [MenuItem("GameObject/UI/Extensions/Controls/UI Button", false)]
 		static public void AddUIButton(MenuCommand menuCommand)
 		{
@@ -788,9 +790,9 @@ namespace UnityEditor.UI
 
 			Selection.activeGameObject = uiButtonRoot;
 		}
-		#endregion
+#endregion
 
-		#region UI Flippable
+#region UI Flippable
 		[MenuItem("GameObject/UI/Extensions/Controls/UI Flippable", false)]
 		static public void AddUIFlippableImage(MenuCommand menuCommand)
 		{
@@ -799,9 +801,9 @@ namespace UnityEditor.UI
 			go.AddComponent<UIFlippable>();
 			Selection.activeGameObject = go;
 		}
-		#endregion
+#endregion
 
-		#region UI WindowBase
+#region UI WindowBase
 		[MenuItem("GameObject/UI/Extensions/Controls/UI Window Base", false)]
 		static public void AddUIWindowBase(MenuCommand menuCommand)
 		{
@@ -810,9 +812,9 @@ namespace UnityEditor.UI
 			go.AddComponent<Image>();
 			Selection.activeGameObject = go;
 		}
-		#endregion
+#endregion
 
-		#region Accordion
+#region Accordion
 		[MenuItem("GameObject/UI/Extensions/Accordion/Accordion", false)]
 		static public void AddAccordionVertical(MenuCommand menuCommand)
 		{
@@ -878,9 +880,9 @@ namespace UnityEditor.UI
 			var textText = textgo.AddComponent<Text>();
 			textText.text = "This is an example of text in an accordion element\nLots of information can be put here for selection\nIf you like";
 		}
-		#endregion
+#endregion
 
-		#region Drop Down controls
+#region Drop Down controls
 		[MenuItem("GameObject/UI/Extensions/ComboBox/AutoComplete ComboBox", false)]
 		static public void AddAutoCompleteComboBox(MenuCommand menuCommand)
 		{
@@ -1207,9 +1209,9 @@ namespace UnityEditor.UI
 			arrowTextCanvasGroup.blocksRaycasts = false;
 			Selection.activeGameObject = dropDownListRoot;
 		}
-		#endregion
+#endregion
 
-		#region RTS Selection box
+#region RTS Selection box
 		[MenuItem("GameObject/UI/Extensions/Selection Box", false)]
 		static public void AddSelectionBox(MenuCommand menuCommand)
 		{
@@ -1241,9 +1243,9 @@ namespace UnityEditor.UI
 
 			Selection.activeGameObject = go;
 		}
-		#endregion
+#endregion
 
-		#region Bound Tooltip
+#region Bound Tooltip
 		[MenuItem("GameObject/UI/Extensions/Bound Tooltip/Tooltip", false)]
 		static public void AddBoundTooltip(MenuCommand menuCommand)
 		{
@@ -1295,9 +1297,9 @@ namespace UnityEditor.UI
 			}
 		}
 
-		#endregion
+#endregion
 
-		#region Progress bar
+#region Progress bar
 		[MenuItem("GameObject/UI/Extensions/Controls/Progress Bar", false)]
 		static public void AddSlider(MenuCommand menuCommand)
 		{
@@ -1342,9 +1344,9 @@ namespace UnityEditor.UI
 			slider.direction = Slider.Direction.LeftToRight;
 			SetDefaultColorTransitionValues(slider);
 		}
-		#endregion
+#endregion
 
-		#region Primitives
+#region Primitives
 
 		[MenuItem("GameObject/UI/Extensions/Primitives/UI Line Renderer", false)]
 		static public void AddUILineRenderer(MenuCommand menuCommand)
@@ -1410,9 +1412,9 @@ namespace UnityEditor.UI
 			Selection.activeGameObject = go;
 		}
 
-		#endregion
+#endregion
 
-		#region Re-Orderable Lists
+#region Re-Orderable Lists
 
 		[MenuItem("GameObject/UI/Extensions/Re-orderable Lists/Re-orderable Vertical Scroll Rect", false)]
 		static public void AddReorderableScrollRectVertical(MenuCommand menuCommand)
@@ -1919,9 +1921,9 @@ namespace UnityEditor.UI
 		}
 
 
-		#endregion
+#endregion
 
-		#region Segmented Control
+#region Segmented Control
 		[MenuItem("GameObject/UI/Extensions/Controls/Segmented Control", false)]
 		static public void AddSegmentedControl(MenuCommand menuCommand)
 		{
@@ -1950,9 +1952,9 @@ namespace UnityEditor.UI
 
 			Selection.activeGameObject = go;
 		}
-		#endregion
+#endregion
 
-		#region Stepper
+#region Stepper
 		[MenuItem("GameObject/UI/Extensions/Sliders/Stepper", false)]
 		static public void AddStepper(MenuCommand menuCommand)
 		{
@@ -1973,9 +1975,9 @@ namespace UnityEditor.UI
 
 			Selection.activeGameObject = go;
 		}
-		#endregion
+#endregion
 
-		#region UI Knob
+#region UI Knob
 		[MenuItem("GameObject/UI/Extensions/Controls/UI Knob", false)]
 		static public void AddUIKnob(MenuCommand menuCommand)
 		{
@@ -1984,9 +1986,9 @@ namespace UnityEditor.UI
 			go.AddComponent<UI_Knob>();
 			Selection.activeGameObject = go;
 		}
-		#endregion
+#endregion
 
-		#region TextPic
+#region TextPic
 		[MenuItem("GameObject/UI/Extensions/Controls/TextPic", false)]
 		static public void AddTextPic(MenuCommand menuCommand)
 		{
@@ -1994,9 +1996,9 @@ namespace UnityEditor.UI
 			go.AddComponent<TextPic>();
 			Selection.activeGameObject = go;
 		}
-		#endregion
+#endregion
 
-		#region BoxSlider
+#region BoxSlider
 		[MenuItem("GameObject/UI/Extensions/Sliders/Box Slider", false)]
 		static public void AddBoxSlider(MenuCommand menuCommand)
 		{
@@ -2030,9 +2032,9 @@ namespace UnityEditor.UI
 
 			Selection.activeGameObject = uiboxSliderRoot;
 		}
-		#endregion
+#endregion
 
-		#region Non Drawing  Graphic options
+#region Non Drawing  Graphic options
 		[MenuItem("GameObject/UI/Extensions/Controls/NonDrawingGraphic", false)]
 		static public void AddNonDrawingGraphic(MenuCommand menuCommand)
 		{
@@ -2049,9 +2051,9 @@ namespace UnityEditor.UI
 			go.AddComponent<UISelectableExtension>();
 			Selection.activeGameObject = go;
 		}
-		#endregion
+#endregion
 
-		#region Radial Slider
+#region Radial Slider
 		[MenuItem("GameObject/UI/Extensions/Sliders/Radial Slider", false)]
 		static public void AddRadialSlider(MenuCommand menuCommand)
 		{
@@ -2087,9 +2089,9 @@ namespace UnityEditor.UI
 
 			Selection.activeGameObject = sliderRoot;
 		}
-		#endregion
+#endregion
 
-		#region RangeSlider
+#region RangeSlider
 		[MenuItem("GameObject/UI/Extensions/Sliders/Range Slider", false)]
 		static public void AddRangeSlider(MenuCommand menuCommand)
 		{
@@ -2155,9 +2157,9 @@ namespace UnityEditor.UI
 
 			Selection.activeGameObject = minMaxSliderRoot;
 		}
-		#endregion
+#endregion
 
-		#region Menu Manager GO
+#region Menu Manager GO
 		[MenuItem("GameObject/UI/Extensions/Menu Manager", false)]
 		static public void AddMenuManager(MenuCommand menuCommand)
 		{
@@ -2166,9 +2168,9 @@ namespace UnityEditor.UI
 			child.AddComponent<MenuManager>();
 			Selection.activeGameObject = child;
 		}
-		#endregion
+#endregion
 
-		#region MinMaxSlider
+#region MinMaxSlider
 		[MenuItem("GameObject/UI/Extensions/Sliders/MinMax Slider", false)]
 		static public void AddMinMaxSlider(MenuCommand menuCommand)
 		{
@@ -2217,12 +2219,17 @@ namespace UnityEditor.UI
 			RectTransform minHandleTextRect = SetAnchorsAndStretch(minHandleText);
 			minHandleTextRect.sizeDelta = new Vector2(70, 50);
 			minHandleTextRect.anchoredPosition = new Vector3(0, 60, 0);
+#if TEXTMESHPRO_4_0_OR_NEWER
 			TextMeshProUGUI minHandleTextComponent = minHandleText.AddComponent<TextMeshProUGUI>();
 			minHandleTextComponent.fontSize = 36;
 			minHandleTextComponent.alignment = TextAlignmentOptions.Center;
+#else
+            Text minHandleTextComponent = minHandleText.AddComponent<Text>();
+            minHandleTextComponent.fontSize = 36;
+            minHandleTextComponent.alignment = TextAnchor.MiddleCenter;
+#endif
 
-
-			RectTransform maxHandleRect = SetAnchorsAndStretch(maxHandle);
+            RectTransform maxHandleRect = SetAnchorsAndStretch(maxHandle);
 			maxHandleRect.anchorMin = new Vector2(1, 0.5f);
 			maxHandleRect.anchorMax = new Vector2(1, 0.5f);
 			maxHandleRect.sizeDelta = new Vector2(30, 62);
@@ -2235,11 +2242,17 @@ namespace UnityEditor.UI
 			RectTransform maxHandleTextRect = SetAnchorsAndStretch(maxHandleText);
 			maxHandleTextRect.sizeDelta = new Vector2(70, 50);
 			maxHandleTextRect.anchoredPosition = new Vector3(0, 60, 0);
+#if TEXTMESHPRO_4_0_OR_NEWER
 			TextMeshProUGUI maxHandleTextComponent = maxHandleText.AddComponent<TextMeshProUGUI>();
 			maxHandleTextComponent.fontSize = 36;
 			maxHandleTextComponent.alignment = TextAlignmentOptions.Center;
+#else
+            Text maxHandleTextComponent = maxHandleText.AddComponent<Text>();
+            maxHandleTextComponent.fontSize = 36;
+            maxHandleTextComponent.alignment = TextAnchor.MiddleCenter;
+#endif
 
-			MinMaxSlider minMaxSlider = minMaxSliderRoot.AddComponent<MinMaxSlider>();
+            MinMaxSlider minMaxSlider = minMaxSliderRoot.AddComponent<MinMaxSlider>();
 			minMaxSlider.SliderBounds = sliderBoundsRect;
 			minMaxSlider.MinHandle = minHandleRect;
 			minMaxSlider.MaxHandle = maxHandleRect;
@@ -2251,11 +2264,11 @@ namespace UnityEditor.UI
 
 			Selection.activeGameObject = minMaxSliderRoot;
 		}
-		#endregion
+#endregion
 
-		#endregion
+#endregion
 
-		#region Helper Functions
+#region Helper Functions
 		private static GameObject AddInputFieldAsChild(GameObject parent)
 		{
 			GameObject root = CreateUIObject("InputField", parent);
@@ -2395,6 +2408,6 @@ namespace UnityEditor.UI
 			return rectTransformRoot;
 		}
 
-		#endregion
+#endregion
 	}
 }

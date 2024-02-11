@@ -2,7 +2,9 @@
 ///Sourced from - https://github.com/brogan89/MinMaxSlider
 
 using System;
+#if TEXTMESHPRO_4_0_OR_NEWER
 using TMPro;
+#endif
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
@@ -28,8 +30,13 @@ namespace UnityEngine.UI.Extensions
 
         // text components (optional)
         [Header("Display Text (Optional)")]
+#if TEXTMESHPRO_4_0_OR_NEWER
         [SerializeField] private TextMeshProUGUI minText = null;
         [SerializeField] private TextMeshProUGUI maxText = null;
+#else
+        [SerializeField] private Text minText = null;
+        [SerializeField] private Text maxText = null;
+#endif
         [SerializeField] private string textFormat = "0";
 
         // values
@@ -48,9 +55,13 @@ namespace UnityEngine.UI.Extensions
         public RectTransform MinHandle { get => minHandle; set => minHandle = value; }
         public RectTransform MaxHandle { get => maxHandle; set => maxHandle = value; }
         public RectTransform MiddleGraphic { get => middleGraphic; set => middleGraphic = value; }
+#if TEXTMESHPRO_4_0_OR_NEWER
         public TextMeshProUGUI MinText { get => minText; set => minText = value; }
         public TextMeshProUGUI MaxText { get => maxText; set => maxText = value; }
-
+#else
+        public Text MinText { get => minText; set => minText = value; }
+        public Text MaxText { get => maxText; set => maxText = value; }
+#endif
         /// <summary>
         /// Event invoked when either slider value has changed
         /// <para></para>
@@ -144,12 +155,12 @@ namespace UnityEngine.UI.Extensions
         {
             if (minText)
             {
-                minText.SetText(minValue.ToString(textFormat));
+                minText.text = minValue.ToString(textFormat);
             }
 
             if (maxText)
             {
-                maxText.SetText(maxValue.ToString(textFormat));
+                maxText.text = maxValue.ToString(textFormat);
             }
         }
 
@@ -163,7 +174,7 @@ namespace UnityEngine.UI.Extensions
             middleGraphic.offsetMax = new Vector2(maxHandle.anchoredPosition.x, 0);
         }
 
-        #region IDragHandler
+#region IDragHandler
         public void OnBeginDrag(PointerEventData eventData)
         {
             passDragEvents = Math.Abs(eventData.delta.x) < Math.Abs(eventData.delta.y);
@@ -261,7 +272,7 @@ namespace UnityEngine.UI.Extensions
                 }
             }
         }
-        #endregion IDragHandler
+#endregion IDragHandler
 
         private void PassDragEvents<T>(Action<T> callback) where T : IEventSystemHandler
         {
